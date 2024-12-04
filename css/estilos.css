@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Dawning+of+a+New+Day&family=Dhurjati&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(7, 7, 7);
+}
+h1{
+    font-family: sans-serif;
+    margin-top: 10px !important;
+   margin-bottom: 30px !important;
+   font-family: 'Segoe UI', sans-serif;
+    font-size: 2.1rem;
+    color: white;
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+label{
+    color: rgb(255, 255, 255);
+}
+form{
+    padding-left: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+}
+button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(255, 56, 86);
+    letter-spacing: 1.5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: rgb(201, 46, 70) 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+    margin: 20px;
+  }
+  
+  button:hover {
+    box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
+  }
+  
+  button:active {
+    background-color: rgb(255, 56, 86);
+    /*50, 168, 80*/
+    box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+  }
+  .btns{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 10px;
+  }
+
+  /* From Uiverse.io by Maximinodotpy */ 
+.inputGroup {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0 1em 0;
+    max-width: 190px;
+    position: relative;
+    color: white;
+  }
+  
+  .inputGroup input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+    color: rgb(255, 255, 255);
+  }
+  
+  .inputGroup label {
+    font-size: 100%;
+    position: absolute;
+    left: 0;
+    padding: 0.8em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(255, 255, 255);
+  }
+  
+  .inputGroup :is(input:focus, input:valid)~label {
+    transform: translateY(-50%) scale(.9);
+    margin: 0em;
+    margin-left: 1.3em;
+    padding: 0.4em;
+    background-color: #000000;
+
+  }
+  
+  .inputGroup :is(input:focus, input:valid) {
+    border-color: rgb(255, 255, 255);
+  }

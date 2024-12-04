@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planilla de Estudios</title>
+    <link rel="stylesheet" href="./css/estilos.css" />
+  </head>
+  <body>
+    <h1>Planilla de Estudios</h1>
+    <form id="planillaForm">
+
+        <div class="inputGroup">
+            <input type="text" required=""  id="nombre"  autocomplete="off">
+            <label for="name">Nombre:</label>
+        </div>
+        
+      <!-- <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" /><br /><br /> -->
+
+      <label for="fecha_laboratorios">Fecha Laboratorios:</label>
+      <input type="date" id="fecha_laboratorios" /><br /><br />
+
+      <label for="fecha_ecografia_abdominal">Fecha Ecografía Abdominal:</label>
+      <input type="date" id="fecha_ecografia_abdominal" /><br /><br />
+
+      <label for="fecha_ecografia_tiroidea">Fecha Ecografía Tiroidea:</label>
+      <input type="date" id="fecha_ecografia_tiroidea" /><br /><br />
+
+      <label for="fecha_electrocardiograma">Fecha Electrocardiograma:</label>
+      <input type="date" id="fecha_electrocardiograma" /><br /><br />
+
+      <label for="fecha_ecocardiograma">Fecha Ecocardiograma:</label>
+      <input type="date" id="fecha_ecocardiograma" /><br /><br />
+
+      <label for="fecha_ergometria">Fecha Ergometría:</label>
+      <input type="date" id="fecha_ergometria" /><br /><br />
+
+      <label for="fecha_videoendoscopia">Fecha Videoendoscopia:</label>
+      <input type="date" id="fecha_videoendoscopia" /><br /><br />
+
+      <label for="fecha_biopsia">Fecha Biopsia:</label>
+      <input type="date" id="fecha_biopsia" /><br /><br />
+
+      <label for="fecha_radiografia_torax">Fecha Radiografía de Tórax:</label>
+      <input type="date" id="fecha_radiografia_torax" /><br /><br />
+
+      <label for="fecha_espirometria">Fecha Espirometría:</label>
+      <input type="date" id="fecha_espirometria" /><br /><br />
+
+      <label for="fecha_poligrafia">Fecha Poligrafía:</label>
+      <input type="date" id="fecha_poligrafia" /><br /><br />
+
+      <label for="fecha_videocolonoscopia">Fecha Videocolonoscopia:</label>
+      <input type="date" id="fecha_videocolonoscopia" /><br /><br />
+
+      <label for="fecha_control_ginecologico"
+        >Fecha Control Ginecológico:</label
+      >
+      <input type="date" id="fecha_control_ginecologico" /><br /><br />
+
+      <label for="fecha_control_cardiologico"
+        >Fecha Control Cardiológico:</label
+      >
+      <input type="date" id="fecha_control_cardiologico" /><br /><br />
+
+      <label for="fecha_prequirurgico">Fecha Prequirúrgico:</label>
+      <input type="date" id="fecha_prequirurgico" /><br /><br />
+<div class="btns">
+    <button type="button" onclick="guardarCambios()">Guardar Cambios</button>
+
+    <button type="button" onclick="enviarCorreo()">Enviar por Correo</button>
+</div>
+
+    </form>
+
+    <script>
+      function cargarDatos() {
+        const datosGuardados = JSON.parse(localStorage.getItem("planilla"));
+        if (datosGuardados) {
+          for (const campo in datosGuardados) {
+            if (document.getElementById(campo)) {
+              document.getElementById(campo).value = datosGuardados[campo];
+            }
+          }
+        }
+      }
+
+      function guardarCambios() {
+        const planilla = {};
+        const campos = document.querySelectorAll("#planillaForm input");
+        campos.forEach((campo) => {
+          planilla[campo.id] = campo.value;
+        });
+        localStorage.setItem("planilla", JSON.stringify(planilla));
+       
+        //alerta
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Cambios guardados exitosamente en el dispositivo",
+        });
+      }
+
+      function enviarCorreo() {
+        const campos = document.querySelectorAll("#planillaForm input");
+        let mensaje = "Datos de la Planilla de Estudios:\n\n";
+
+        campos.forEach((campo) => {
+          mensaje += `${campo.previousElementSibling.textContent} ${campo.value}\n`;
+        });
+
+        const mailtoLink = `mailto:mario.campazzo@hospitalprivadosa.com.ar?subject=Planilla de Estudios&body=${encodeURIComponent(
+          mensaje
+        )}`;
+        window.location.href = mailtoLink;
+        
+      }
+
+      cargarDatos();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
